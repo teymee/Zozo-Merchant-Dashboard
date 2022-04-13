@@ -1,7 +1,7 @@
 import { all, call, put, takeEvery } from "redux-saga/effects";
 import { notification } from "antd";
 
-import { actionTypes, addCategory, addCategorySuccess, fetchCategorySuccess } from "./action";
+import { actionTypes, addCategory, addCategorySuccess, fetchCategorySuccess,deleteCategorySuccess } from "./action";
 import axios from "axios";
 import { API } from "../API/Api";
 
@@ -48,6 +48,26 @@ const sagaFetchCategories= async ()=>{
        return data
 }
 
+//DELETECATEGORIES
+const sagaDeleteCategories= async (id)=>{
+      const url = API.BASE_URL + "/category/id/" + id;
+	const config = {
+		headers: {
+			Authorization: "Bearer" + API.TOKEN,
+		},
+	};
+
+     const data = await axios.delete(url, config).then((response)=>{
+
+            return response.data.message
+
+      }).catch((err) => {
+            alert(err + 'deleting categories');
+      });
+
+       return data
+}
+
 
 
 function* postCategory(payload) {
@@ -70,8 +90,22 @@ function* getCategory(){
       }
 }
 
+function* deleteCategory(payload){
+      try{
+            const isDeleted = yield call(sagaDeleteCategories, payload.id)
+            yield put(deleteCategorySuccess(isDeleted ))
+          
+      }catch (err){
+            console.log(err)
+      }
+}
+
+
+
+
 export default function* rootSaga() {
 	yield all([takeEvery(actionTypes.CATEGORY_POST, postCategory)]);
       yield all([takeEvery(actionTypes.CATEGORY_GET, getCategory)]);
+	yield all([takeEvery(actionTypes.CATEGORY_DELETE, deleteCategory)]);
 	// yield all([takeEvery(actionTypes.LOGOUT, logOutSaga)]);
 }
