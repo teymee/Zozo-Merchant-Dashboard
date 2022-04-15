@@ -24,15 +24,15 @@
       "static/chunks/webpack.js",
       "static/chunks/pages/_error.js"
     ],
+    "/bids/create-bid/[product]": [
+      "static/chunks/main.js",
+      "static/chunks/webpack.js",
+      "static/chunks/pages/bids/create-bid/[product].js"
+    ],
     "/categories": [
       "static/chunks/main.js",
       "static/chunks/webpack.js",
       "static/chunks/pages/categories.js"
-    ],
-    "/products/create-product": [
-      "static/chunks/main.js",
-      "static/chunks/webpack.js",
-      "static/chunks/pages/products/create-product.js"
     ]
   },
   "ampFirstPages": []

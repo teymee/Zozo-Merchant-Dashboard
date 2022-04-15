@@ -61,7 +61,7 @@ const FormCreateCategory = () => {
 				</div>
 			</div>
 			<div className="ps-form__bottom">
-				<button className="ps-btn ps-btn--gray">Reset</button>
+				{/* <button className="ps-btn ps-btn--gray">Reset</button> */}
 				<button className="ps-btn ps-btn--sumbit success">Add new</button>
 			</div>
 		</form>

@@ -22,7 +22,7 @@ const TableCategoryItems = () => {
         })
     }
   
-    console.log(categories)
+
 	return (
 		<div className="table-responsive">
 			<table className="table ps-table">

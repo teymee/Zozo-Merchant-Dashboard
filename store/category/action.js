@@ -1,6 +1,6 @@
 export const actionTypes = {
 	CATEGORY_POST: "CATEGORY_POST",
-      CATEGORY_POST_SUCCESS: "CATEGORY_POST_SUCCESS",
+	CATEGORY_POST_SUCCESS: "CATEGORY_POST_SUCCESS",
 	CATEGORY_GET: "CATEGORY_GET",
 	CATEGORY_GET_SUCCESS: "CATEGORY_GET_SUCCESS",
 	CATEGORY_DELETE: "CATEGORY_DELETE",
@@ -12,6 +12,7 @@ export function addCategory(category) {
 }
 
 export function addCategorySuccess() {
+	console.log("Category added syccesfully")
 	return { type: actionTypes.CATEGORY_POST_SUCCESS };
 }
 
@@ -20,16 +21,16 @@ export function fetchCategory() {
 }
 
 export function fetchCategorySuccess(categories) {
-      console.log(categories)
+	
 	return { type: actionTypes.CATEGORY_GET_SUCCESS, categories };
 }
 
-export function deleteActionCategory(id){
-	console.log(id)
+export function deleteActionCategory(id) {
+	console.log(id);
 	return { type: actionTypes.CATEGORY_DELETE, id };
 }
 
 export function deleteCategorySuccess(deletedMsg) {
-      console.log(deletedMsg)
+	console.log(deletedMsg);
 	return { type: actionTypes.CATEGORY_DELETE_SUCCESS, deletedMsg };
 }

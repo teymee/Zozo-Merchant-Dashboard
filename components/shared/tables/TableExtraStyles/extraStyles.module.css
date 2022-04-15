@@ -1,0 +1,8 @@
+.createEventButton{
+      border: none;
+      font-size: 12px;
+      padding: 10px 10px;
+      border-radius: 7px;
+      background-color:  #9e64c0;
+      color: white;
+}
