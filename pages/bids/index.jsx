@@ -1,4 +1,6 @@
 import React from 'react'
+import ContainerDefault from '~/components/layouts/ContainerDefault';
+import HeaderDashboard from '~/components/shared/headers/HeaderDashboard';
 
 function BidPage() {
       return (
