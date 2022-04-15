@@ -1,3 +1,13 @@
+import React from 'react'
+
+function BidPage() {
+  return (
+    <div>BidPage</div>
+  )
+}
+
+export default BidPage
+
 // import React from 'react'
 // import ContainerDefault from '~/components/layouts/ContainerDefault';
 // import HeaderDashboard from '~/components/shared/headers/HeaderDashboard';
