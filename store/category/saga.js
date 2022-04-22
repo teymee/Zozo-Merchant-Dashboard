@@ -26,7 +26,7 @@ const sagaAddCategory = async (cate) => {
 			return response.data;
 		})
 		.catch((err) => {
-			alert(err + "adding to category");
+			console.log(err + "adding to category");
 		});
 
 	return data;
@@ -47,7 +47,7 @@ const sagaFetchCategories = async () => {
 			return response.data.category;
 		})
 		.catch((err) => {
-			alert(err + "fetching categories");
+			console.log(err + "fetching categories");
 		});
 
 	return data;
@@ -68,7 +68,7 @@ const sagaDeleteCategories = async (id) => {
 			return response.data.message;
 		})
 		.catch((err) => {
-			alert(err + "deleting categories");
+			console.log(err + "deleting categories");
 		});
 
 	return data;
@@ -79,7 +79,7 @@ function* postCategory(payload) {
 		const isCateAdded = yield call(sagaAddCategory, payload.category);
 		yield put(addCategorySuccess(isCateAdded));
 	} catch (err) {
-		alert(err);
+		console.log(err);
 	}
 }
 

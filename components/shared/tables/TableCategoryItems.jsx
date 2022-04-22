@@ -15,7 +15,7 @@ const TableCategoryItems = () => {
 	}, [category]);
 
     let categories
-    if(!cateGetLoading){
+    if(!cateGetLoading && category){
         categories = category.map((cate, index)=>{
             
             return <CategoryColumn category={cate} num={index} key={cate.id}/>
