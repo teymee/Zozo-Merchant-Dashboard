@@ -3,7 +3,7 @@ import React from 'react';
 const CardTopCountries = () => (
     <section className="ps-card ps-card--top-country">
         <div className="ps-card__header">
-            <h4>Top Countries</h4>
+            <h4>Top Auctions</h4>
         </div>
         <div className="ps-card__content">
             <div className="row">
@@ -31,6 +31,7 @@ const CardTopCountries = () => (
                         <strong>35%</strong>
                     </figure>
                 </div>
+                
             </div>
             <img src="/img/map-and-bundle.png" alt="" />
             <p>We only started collecting region data from January 2015</p>

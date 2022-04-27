@@ -11,8 +11,8 @@ const withImages = require('next-images');
 
 const nextSettings = {
     env: {
-        title: 'Martfury',
-        titleDescription: 'Admin Template',
+        title: 'Zozo Admin',
+        titleDescription: 'Admin Dashboard',
     },
 };
 

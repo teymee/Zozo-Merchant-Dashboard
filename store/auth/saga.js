@@ -1,41 +1,96 @@
-import { all, put, takeEvery } from 'redux-saga/effects';
-import { notification } from 'antd';
+import { all, call, put, takeEvery } from "redux-saga/effects";
+import axios from "axios";
+import { notification } from "antd";
 
-import { actionTypes, loginSuccess, logOutSuccess } from './action';
+import { actionTypes, loginSuccess, logOutSuccess, registerSuccess } from "./action";
+import { API } from "../API/Api";
 
 const modalSuccess = (type) => {
-    notification[type]({
-        message: 'Wellcome back',
-        description: 'You are login successful!',
-    });
+	notification[type]({
+		message: "Welcome back",
+		description: "You are login successful!",
+	});
 };
 
 const modalWarning = (type) => {
-    notification[type]({
-        message: 'Good bye!',
-        description: 'Your account has been logged out!',
-    });
+	notification[type]({
+		message: "Good bye!",
+		description: "Your account has been logged out!",
+	});
 };
 
-function* loginSaga() {
-    try {
-        yield put(loginSuccess());
-        modalSuccess('success');
-    } catch (err) {
-        console.log(err);
-    }
+const loginAdmin = async (loginCred) => {
+	console.log(loginCred);
+	const url = "https://zozo-auction.herokuapp.com/api/v1/login";
+
+	const data = axios
+		.post(url, loginCred)
+		.then((response) => {
+			console.log(response.data);
+			localStorage.setItem("token", JSON.stringify(response.data.token));
+			return response.data;
+		})
+		.catch((err) => {
+			console.log(err);
+		});
+	return data;
+};
+
+const registerAdmin = async (registerCred) => {
+	console.log(registerCred);
+	const url = "https://zozo-auction.herokuapp.com/api/v1/register";
+
+	const data = axios
+		.post(url, registerCred)
+		.then((response) => {
+			console.log(response.data.token);
+			localStorage.setItem("token", JSON.stringify(response.data.token));
+			return response.data;
+		})
+		.catch((err) => {
+			console.log(err);
+		});
+	return data;
+};
+
+
+
+function* loginSaga(payload) {
+	try {
+		const isLogin = yield call(loginAdmin, payload.loginCred);
+		if (isLogin) {
+			yield put(loginSuccess());
+			modalSuccess("success");
+		}
+	} catch (err) {
+		console.log(err);
+	}
+}
+
+function* registerSaga(payload) {
+	try {
+        console.log(payload.registerCred)
+		const isRegistered = yield call(registerAdmin, payload.registerCred);
+		if (isRegistered) {
+			yield put(registerSuccess());
+			modalSuccess("success");
+		}
+	} catch (err) {
+		console.log(err);
+	}
 }
 
 function* logOutSaga() {
-    try {
-        yield put(logOutSuccess());
-        modalWarning('warning');
-    } catch (err) {
-        console.log(err);
-    }
+	try {
+		yield put(logOutSuccess());
+		modalWarning("warning");
+	} catch (err) {
+		console.log(err);
+	}
 }
 
 export default function* rootSaga() {
-    yield all([takeEvery(actionTypes.LOGIN_REQUEST, loginSaga)]);
-    yield all([takeEvery(actionTypes.LOGOUT, logOutSaga)]);
+	yield all([takeEvery(actionTypes.LOGIN_REQUEST, loginSaga)]);
+    yield all([takeEvery(actionTypes.REGISTER_REQUEST, registerSaga)]);
+	yield all([takeEvery(actionTypes.LOGOUT, logOutSaga)]);
 }

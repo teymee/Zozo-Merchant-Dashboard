@@ -1,8 +1,17 @@
-.createEventButton{
-      border: none;
-      font-size: 12px;
-      padding: 10px 10px;
-      border-radius: 7px;
-      background-color:  #9e64c0;
-      color: white;
+.createEventButton,
+.declineEventButton {
+	border: none;
+	font-size: 12px;
+	padding: 10px 10px;
+	border-radius: 7px;
+	background-color: #9e64c0;
+	color: white;
+}
+
+.createEventButton {
+	background-color: #9e64c0;
+}
+
+.declineEventButton {
+	background-color: rgb(184, 64, 64);
 }

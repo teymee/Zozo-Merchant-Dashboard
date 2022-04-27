@@ -12,7 +12,7 @@ function TablePendingBid() {
 		dispatch(actionAdminFetchPending());
 	}, []);
 
-    console.log( pendingBids)
+	console.log(pendingBids);
 
 	let bidEvents;
 	if (!bidGetLoading) {
@@ -28,15 +28,13 @@ function TablePendingBid() {
 					<tr>
 						<th>ID</th>
 						<th>Name</th>
-                                    <th>Start Time</th>
+						<th>Start Time</th>
 						<th>Access Amount</th>
 						<th>Minimum Amount</th>
-						
+
 						<th> Created Date</th>
-                                    <th>Approve</th>
-						{/* <th>Bid Status</th>
-                          <th>Create Event</th>
-                          <th></th> */}
+						<th>Approve</th>
+						<th>Decline</th>
 					</tr>
 				</thead>
 				<tbody>{!bidGetLoading && bidEvents}</tbody>

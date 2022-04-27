@@ -29,6 +29,9 @@ function PendingBidColumn({bidEvent, num}) {
 				<button onClick={approveEvent} className={styles.createEventButton}>Approve Event</button>
 			</td>
 			<td>
+				<button onClick={approveEvent} className={styles.declineEventButton}>Delcine Event</button>
+			</td>
+			<td>
 				<DropdownAction type="bidEvent" id={bidEvent.id} key={num + 1} />
 			</td>
 		</tr>

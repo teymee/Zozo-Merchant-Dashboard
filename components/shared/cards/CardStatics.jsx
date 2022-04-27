@@ -24,7 +24,7 @@ const CardStatics = () => (
                     </span>
                 </div>
                 <div className="ps-block__content">
-                    <p>Orders</p>
+                    <p>Number of Bidders</p>
                     <h4>
                         254
                         <small className="asc">
@@ -41,7 +41,7 @@ const CardStatics = () => (
                     </span>
                 </div>
                 <div className="ps-block__content">
-                    <p>Revenue</p>
+                    <p>Number of Auctions</p>
                     <h4>
                         $6,260
                         <small className="asc">
@@ -58,7 +58,41 @@ const CardStatics = () => (
                     </span>
                 </div>
                 <div className="ps-block__content">
-                    <p>Earning</p>
+                    <p>Bidding activity/volume per month </p>
+                    <h4>
+                        $2,567
+                        <small className="desc">
+                            <i className="icon-arrow-down"></i>
+                            <span>0.5%</span>
+                        </small>
+                    </h4>
+                </div>
+            </div>
+            <div className="ps-block--stat green">
+                <div className="ps-block__left">
+                    <span>
+                        <i className="icon-cart"></i>
+                    </span>
+                </div>
+                <div className="ps-block__content">
+                    <p>Number of Ongoing Auctions </p>
+                    <h4>
+                        $2,567
+                        <small className="desc">
+                            <i className="icon-arrow-down"></i>
+                            <span>0.5%</span>
+                        </small>
+                    </h4>
+                </div>
+            </div>
+            <div className="ps-block--stat green">
+                <div className="ps-block__left">
+                    <span>
+                        <i className="icon-cart"></i>
+                    </span>
+                </div>
+                <div className="ps-block__content">
+                    <p>Pending Auctions for Approval </p>
                     <h4>
                         $2,567
                         <small className="desc">

@@ -24,7 +24,7 @@ const CardSaleReport = () => {
             dataLabels: {
                 enabled: false,
             },
-            colors: ['#fcb800', '#f9f9f9', '#9C27B0'],
+            colors: ['#743B96', '#f9f9f9', '#9C27B0'],
             stroke: {
                 curve: 'smooth',
             },

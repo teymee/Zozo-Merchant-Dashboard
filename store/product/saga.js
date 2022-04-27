@@ -30,6 +30,8 @@ const sagaAddProduct = async (product) => {
 	return data;
 };
 
+
+
 //GET SPECIFIC MERCHANT'S PRODUCT
 const sagaGetMerchantProducts = async (id) => {
 	const url = API.MERCHANT_BASE_URL + "/product/all/" + id;

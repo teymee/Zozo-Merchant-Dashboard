@@ -1,0 +1,40 @@
+.authForm{
+      width: 100%;
+   
+}
+
+.container{
+      margin: auto auto;
+      width: 50%;
+     margin-top: 5%;
+}
+
+.authForm input{
+      width: 100%;
+      padding: 15px 30px;
+      outline: none;
+      margin-bottom: 30px;
+      border: 1px solid grey;
+}
+
+.authForm label{
+    font-size: 15px;
+      padding: 10px 0px;
+     
+}
+
+.authForm h2{
+      text-align: center;
+
+}
+
+.authForm button{
+    width: 100%;
+    color: white;
+    background-color: rgb(180, 81, 180);
+      padding: 15px 10px;
+      border: none;
+      border-radius: 5px;
+      font-size: 15px;
+      margin-bottom: 20px;
+}

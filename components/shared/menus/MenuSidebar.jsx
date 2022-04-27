@@ -10,26 +10,39 @@ const MenuSidebar = () => {
 			url: "/",
 			icon: "icon-home",
 		},
-		{
-			text: "Pending Bids",
-			url: "/bids/pending",
-			icon: "icon-cog",
-		},
-		{
-			text: "Approved Bids",
-			url: "/settings",
-			icon: "icon-cog",
-		},
-		{
-			text: "Completed Bids",
-			url: "/settings",
-			icon: "icon-cog",
-		},
+		
 		{
 			text: "Products",
 			url: "/products",
 			icon: "icon-database",
 		},
+
+		{
+			text: "Categories",
+			url: "/categories",
+			icon: "icon-users2",
+		},
+		{
+			text: "Pending Auctions",
+			url: "/bids/pending",
+			icon: "icon-cog",
+		},
+		{
+			text: "Approved Auctions",
+			url: "/bids/approved",
+			icon: "icon-cog",
+		},
+		{
+			text: "Completed Auctions",
+			url: "/bids/completed",
+			icon: "icon-cog",
+		},
+		{
+			text: "Ongoing Auctions",
+			url: "/bids/ongoing",
+			icon: "icon-cog",
+		},
+		
 		{
 			text: "Orders",
 			url: "/orders",
@@ -41,10 +54,26 @@ const MenuSidebar = () => {
 			icon: "icon-users2",
 		},
 		{
-			text: "Categories",
-			url: "/categories",
+			text: "Merchants",
+			url: "/merchants",
 			icon: "icon-users2",
 		},
+		{
+			text: "Shipping",
+			url: "/shipping",
+			icon: "icon-cog",
+		},
+		{
+			text: "Cashout Requests",
+			url: "/cashout_requests",
+			icon: "icon-cog",
+		},
+		{
+			text: "Approved Cashouts",
+			url: "/approved_cashouts",
+			icon: "icon-cog",
+		},
+	
 		{
 			text: "Settings",
 			url: "/settings",
