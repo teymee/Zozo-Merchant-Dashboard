@@ -5,6 +5,8 @@ import app from './app/reducer';
 import category from './category/reducer';
 import product from './product/reducer';
 import bid from './bid/reducer';
+import merchant from './merchant/reducer';
+import customer from './customer/reducer';
 
 export default combineReducers({
     auth,
@@ -12,4 +14,6 @@ export default combineReducers({
     category,
     product,
     bid,
+    merchant,
+    customer
 });

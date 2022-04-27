@@ -7,12 +7,13 @@ import HeaderDashboard from '~/components/shared/headers/HeaderDashboard';
 import { connect, useDispatch } from 'react-redux';
 import { toggleDrawerMenu } from '~/store/app/action';
 import { Select } from 'antd';
+import { actionGetAllCustomers } from '~/store/customer/action';
 
 const { Option } = Select;
 const CustomersPage = () => {
     const dispatch = useDispatch();
     useEffect(() => {
-        dispatch(toggleDrawerMenu(false));
+        dispatch(actionGetAllCustomers());
     }, []);
     return (
         <ContainerDefault title="Customers">
