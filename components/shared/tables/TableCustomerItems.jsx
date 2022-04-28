@@ -20,7 +20,7 @@ const TableCustomerItems = ({ users, type }) => {
                         <th>Ongoing</th>
                         <th>Completed</th>
 						<th>Status</th>
-						<th>Downgrade</th>
+						<th>Verify/Downgrade</th>
 					</tr>
 				</thead>
 				<tbody>{userList}</tbody>

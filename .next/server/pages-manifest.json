@@ -2,8 +2,6 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/merchants": "pages/merchants.js",
-  "/products": "pages/products.js",
-  "/404": "pages/404.js",
+  "/bids/create-bid/[product]": "pages/bids/create-bid/[product].js",
   "/bids/pending": "pages/bids/pending.js"
 }

@@ -1,52 +1,3 @@
-// import { all, call, put, takeEvery } from "redux-saga/effects";
-// import { notification } from "antd";
-// import axios from "axios";
-// import { API } from "../API/Api";
-// import rootSaga from "../rootSaga";
-// import {
-// 	actionTypes,
-//       actionGetAllMechants,
-//       actionSuccessGetAllMechants
-// } from "./action";
-
-// const config = {
-//       headers: {
-//             Authorization: "Bearer" + API.TOKEN,
-//       },
-// };
-
-// const sagaFetchAllMerchant = async()=>{
-
-//       const url = API.BASE_URL + "/merchant";
-
-// 	const data = await axios
-// 		.get(url, config)
-// 		.then((response) => {
-// 			return response.data.merchant;
-// 		})
-// 		.catch((err) => {
-// 			console.log(err + "fetching  merchants");
-// 		});
-
-// 	return data;
-// }
-
-// function* getAllMerchant(){
-//       try{
-
-//             const merchants = yield call(sagaFetchAllMerchant)
-//             yield put(actionSuccessGetAllMechants(merchants))
-//       }catch(err){
-//             console.log(err)
-//       }
-
-// }
-
-// export default function* rootSaga() {
-//       yield all([takeEvery(actionTypes.GET_ALL_MERCHANTS, getAllMerchant)]);
-
-// }
-
 import { all, call, put, takeEvery } from "redux-saga/effects";
 import { notification } from "antd";
 
@@ -54,6 +5,7 @@ import {
 	actionTypes,
 	actionGetAllMechants,
 	actionSuccessGetAllMechants,
+	actionSuccessVerifyMechant,
 } from "./action";
 import axios from "axios";
 import { API } from "../API/Api";
@@ -65,7 +17,7 @@ const config = {
 		Authorization: "Bearer" + API.TOKEN,
 	},
 };
-//FETCH CATEGORIES
+//FETCH ALL MERCHANTS
 const sagaFetchMerchants = async () => {
 	const url = API.BASE_URL + "/merchant";
 
@@ -76,6 +28,28 @@ const sagaFetchMerchants = async () => {
 		})
 		.catch((err) => {
 			console.log(err + "fetching merchants");
+		});
+
+	return data;
+};
+
+//FETCH CATEGORIES
+const sagaVerifyMerchant = async (merchant_id) => {
+	const url = API.BASE_URL + "/account/verify";
+
+	
+	const merchant = {
+		account_id: merchant_id.toString()
+	}
+	console.log(merchant)
+	const data = await axios
+		.post(url, merchant, config)
+		.then((response) => {
+			console.log(response.data)
+			return response.data;
+		})
+		.catch((err) => {
+			console.log(err + "Verify Merchant");
 		});
 
 	return data;
@@ -99,6 +73,15 @@ function* getAllMechants() {
 	}
 }
 
+function* verifyMerchant(payload) {
+	try {
+		const merchants = yield call(sagaVerifyMerchant, payload.merchant_id);
+		yield put(actionSuccessVerifyMechant(merchants));
+	} catch (err) {
+		console.log(err);
+	}
+}
+
 // function* deleteCategory(payload) {
 // 	try {
 // 		const isDeleted = yield call(sagaDeleteCategories, payload.id);
@@ -110,4 +93,5 @@ function* getAllMechants() {
 
 export default function* rootSaga() {
 	yield all([takeEvery(actionTypes.GET_ALL_MERCHANTS, getAllMechants)]);
+	yield all([takeEvery(actionTypes.VERIFY_MERCHANT, verifyMerchant)]);
 }

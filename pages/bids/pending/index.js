@@ -9,7 +9,7 @@ import TablePendingBid from "~/components/shared/tables/TablePendingBid";
 
 function PendingBids() {
 	return (
-		<ContainerDefault title="Products">
+		<ContainerDefault title="Pending Bids">
 			<HeaderDashboard
 				title="Products"
 				description="Martfury Product Listing "

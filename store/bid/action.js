@@ -1,8 +1,8 @@
 export const actionTypes = {
       CREATE_BID_EVENT: "CREATE_BID_EVENT",
       CREATE_BID_EVENT_SUCCESS: "CREATE_BID_EVENT_SUCCESS",
-      ADMIN_FETCH_PENDING_BID_EVENT: "ADMIN_FETCH_PENDING_BID_EVENT",
-      ADMIN_FETCH_PENDING_BID_EVENT_SUCCESS: "ADMIN_FETCH_PENDING_BID_EVENT_SUCCESS",
+      ADMIN_FETCH_BID_EVENTS: "ADMIN_FETCH_BID_EVENTS",
+      ADMIN_FETCH_BID_EVENTS_SUCCESS: "ADMIN_FETCH_BID_EVENTS_SUCCESS",
       APPROVE_BID_EVENT: "APPROVE_BID_EVENT",
       APPROVE_BID_EVENT_SUCCESS: "APPROVE_BID_EVENT_SUCCESS",
 }
@@ -17,13 +17,13 @@ export function actionCreateBidEventSuccess (isCreated){
 }
 
 //ADMIN
-export function actionAdminFetchPending (){
-      return {type:actionTypes.ADMIN_FETCH_PENDING_BID_EVENT}
+export function actionAdminFetchAuctions (status){
+      return {type:actionTypes.ADMIN_FETCH_BID_EVENTS, status}
 }
 
-export function actionAdminFetchPendingSuccess (pendingBids){
-      console.log(pendingBids)
-      return {type:actionTypes.ADMIN_FETCH_PENDING_BID_EVENT_SUCCESS, pendingBids}
+export function actionAdminFetchAuctionsSuccess (auctions){
+      console.log(auctions)
+      return {type:actionTypes.ADMIN_FETCH_BID_EVENTS_SUCCESS, auctions}
 }
 
 export function actionApproveEvent (event_id){

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { actionAdminFetchPending } from "~/store/bid/action";
+import { actionAdminFetchAuctions } from "~/store/bid/action";
 import PendingBidColumn from "./table-columns/PendingBidColumn";
 
 function TablePendingBid() {
@@ -9,7 +9,7 @@ function TablePendingBid() {
 	const { pendingBids, bidGetLoading } = useSelector((state) => state.bid);
 
 	useEffect(() => {
-		dispatch(actionAdminFetchPending());
+		dispatch(actionAdminFetchAuctions("pending"));
 	}, []);
 
 	console.log(pendingBids);

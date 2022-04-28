@@ -2,11 +2,18 @@ import axios from "axios";
 import { all, call, put, takeEvery } from "redux-saga/effects";
 import { API } from "../API/Api";
 import {
-	actionAdminFetchPendingSuccess,
+	actionAdminFetchAuctionsSuccess,
 	actionApproveEventSuccess,
 	actionCreateBidEventSuccess,
 	actionTypes,
 } from "./action";
+
+
+const config = {
+	headers: {
+		Authorization: "Bearer" + API.TOKEN,
+	},
+};
 
 //POST CREAT BID EVENT
 const sagaCreateBidEvent = async (event) => {
@@ -25,15 +32,11 @@ const sagaCreateBidEvent = async (event) => {
 	return data;
 };
 
-const sagaAdminFetchPendingBidEvent = async () => {
-	const url = API.BASE_URL + "/bidding";
-	const config = {
-		headers: {
-			Authorization: "Bearer" + API.TOKEN,
-		},
-	};
+const sagaAdminFetchBidEvent = async (status) => {
+	const url = API.BASE_URL + "/bidding/status";
 
-	const data = axios.get(url, config).then((response) => {
+
+	const data = axios.post(url, status, config).then((response) => {
 		console.log(response.data);
 		return response.data;
 	});
@@ -70,10 +73,10 @@ function* createBidEvent(payload) {
 function* adminFetchBidEvent(payload) {
 	try {
 		const getAllBidEvent = yield call(
-			sagaAdminFetchPendingBidEvent,
+			sagaAdminFetchBidEvent,
 			payload.event
 		);
-		yield put(actionAdminFetchPendingSuccess(getAllBidEvent.bidding_event));
+		yield put(actionAdminFetchAuctionsSuccess(getAllBidEvent.bidding_event));
 	} catch (err) {
 		console.log(err);
 	}
@@ -92,7 +95,7 @@ function* approveBidEvent(payload) {
 export default function* rootSaga() {
 	yield all([takeEvery(actionTypes.CREATE_BID_EVENT, createBidEvent)]);
 	yield all([
-		takeEvery(actionTypes.ADMIN_FETCH_PENDING_BID_EVENT, adminFetchBidEvent),
+		takeEvery(actionTypes.ADMIN_FETCH_BID_EVENTS, adminFetchBidEvent),
 	]);
 	yield all([takeEvery(actionTypes.APPROVE_BID_EVENT, approveBidEvent)]);
 }
