@@ -2,9 +2,17 @@ import React from "react";
 import { Dropdown, Menu } from "antd";
 import { useDispatch } from "react-redux";
 import { deleteActionCategory } from "~/store/category/action";
+import Link from "next/link";
 
 const DropdownAction = ({ type, id }) => {
 	const dispatch = useDispatch();
+	console.log(type)
+	let url
+	if(type === "customer"){
+		url = '/user/customer/'+id
+	}else if(type === "merchant"){
+		url = '/user/merchant/'+id
+	}
    
 	const deleteCategory = () => {
 		switch (type) {
@@ -18,24 +26,26 @@ const DropdownAction = ({ type, id }) => {
 	const menuView = (
 		<Menu>
 			<Menu.Item key={0}>
-				<a className="dropdown-item" href="#">
+				<Link href={url}>
+				<p className="dropdown-item">
 					<i className="icon-pencil mr-2"></i>
-					Edit
-				</a>
+					View
+				</p>
+				</Link>
 			</Menu.Item>
 			<Menu.Item key={0} onClick={deleteCategory}>
-				<a className="dropdown-item" href="#">
+				<p className="dropdown-item" >
 					<i className="icon-trash2 mr-2"></i>
 					Delete
-				</a>
+				</p>
 			</Menu.Item>
 		</Menu>
 	);
 	return (
 		<Dropdown overlay={menuView} className="ps-dropdown">
-			<a onClick={(e) => e.preventDefault()} className="ps-dropdown__toggle">
+			<p onClick={(e) => e.preventDefault()} className="ps-dropdown__toggle">
 				<i className="icon-ellipsis"></i>
-			</a>
+			</p>
 		</Dropdown>
 	);
 };

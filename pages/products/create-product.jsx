@@ -6,50 +6,52 @@ import { toggleDrawerMenu } from "~/store/app/action";
 import { addProduct } from "~/store/product/action";
 import { useSelector } from "react-redux";
 import { fetchCategory } from "~/store/category/action";
+import Router  from "next/router";
+
+
 
 const CreateProductPage = () => {
 	const dispatch = useDispatch();
-	const[productCategory, setProductCategory] = useState([])
+	const [productCategory, setProductCategory] = useState([]);
 	
 	useEffect(() => {
 		dispatch(toggleDrawerMenu(false));
-		dispatch(fetchCategory())
+		dispatch(fetchCategory());
 	}, []);
-	const { category, cateGetLoading } = useSelector((state) => state.category);
-	
-	let categories
-	let categoryArray = (e)=>{
-		const selected=[];
+	const { category, cateGetLoading, productPostLoading } = useSelector(
+		(state) => state.category
+	);
 
-		let selectedOption=(e.target.selectedOptions);
-	  
-	   
-	  
-		for (let i = 0; i < selectedOption.length; i++){
-	  
-		    selected.push(selectedOption.item(i).value)
-	  
+	let categories;
+	let categoryArray = (e) => {
+		const selected = [];
+
+		let selectedOption = e.target.selectedOptions;
+
+		for (let i = 0; i < selectedOption.length; i++) {
+			selected.push(selectedOption.item(i).value);
 		}
-	  
-		
-	    
-	  
-	setProductCategory(selected)
-	}
-	
 
-	if(!cateGetLoading){
-		categories = category.map((cate, index)=>{
-			return <option key={index} value={cate.id} > {cate.name}</option>
-		})
+		setProductCategory(selected);
+	};
+
+	if (!cateGetLoading) {
+		categories = category.map((cate, index) => {
+			return (
+				<option key={index} value={cate.id}>
+					{" "}
+					{cate.name}
+				</option>
+			);
+		});
 	}
 
 	const submitProduct = (e) => {
 		e.preventDefault();
 		console.log("product submitted");
-		console.log(e.target.category.value)
+		console.log(e.target.category.value);
 		const category = productCategory;
-		
+
 		const product = {
 			merchant_id: "1",
 			name: e.target.product.value,
@@ -65,9 +67,15 @@ const CreateProductPage = () => {
 			images: {
 				main: e.target.image.value,
 			},
-			
 		};
 		dispatch(addProduct(product));
+
+		if(!productPostLoading){
+
+			setTimeout(() => {
+				Router.push('/products')
+			}, 2000);
+		}
 	};
 
 	return (
@@ -82,7 +90,7 @@ const CreateProductPage = () => {
 						<div className="row">
 							<div className="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
 								<figure className="ps-block--form-box">
-									<figcaption>General</figcaption>
+									<figcaption style={{ color: "white" }}>General</figcaption>
 									<div className="ps-block__content">
 										<div className="form-group">
 											<label>
@@ -111,7 +119,12 @@ const CreateProductPage = () => {
 											<label>
 												Category<sup>*</sup>
 											</label>
-											<select className="form-control" name="category"  multiple onChange={categoryArray}>
+											<select
+												className="form-control"
+												name="category"
+												multiple
+												onChange={categoryArray}
+											>
 												{!cateGetLoading && categories}
 											</select>
 										</div>
@@ -238,7 +251,9 @@ const CreateProductPage = () => {
 
 							<div className="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
 								<figure className="ps-block--form-box">
-									<figcaption>Product Images</figcaption>
+									<figcaption style={{ color: "white" }}>
+										Product Images
+									</figcaption>
 									<div className="ps-block__content">
 										<div className="form-group">
 											<label>Product Thumbnail</label>

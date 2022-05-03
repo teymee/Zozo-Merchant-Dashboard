@@ -6,6 +6,7 @@ import {
 	actionGetAllMechants,
 	actionSuccessGetAllMechants,
 	actionSuccessVerifyMechant,
+	actionSuccessGetSingleMechant,
 } from "./action";
 import axios from "axios";
 import { API } from "../API/Api";
@@ -17,9 +18,10 @@ const config = {
 		Authorization: "Bearer" + API.TOKEN,
 	},
 };
+
 //FETCH ALL MERCHANTS
 const sagaFetchMerchants = async () => {
-	const url = API.BASE_URL + "/merchant";
+	const url = API.ADMIN_BASE_URL + "/merchant";
 
 	const data = await axios
 		.get(url, config)
@@ -33,17 +35,35 @@ const sagaFetchMerchants = async () => {
 	return data;
 };
 
-//FETCH CATEGORIES
-const sagaVerifyMerchant = async (merchant_id) => {
-	const url = API.BASE_URL + "/account/verify";
+//FETCH SINGLE MERCHANT
+const sagaFetchSingleMerchant = async (merchant_id) => {
+	const url = API.ADMIN_BASE_URL + "/merchant/"+merchant_id;
+
+	const data = await axios
+		.get(url, config)
+		.then((response) => {
+
+			return response.data.merchant;
+		})
+		.catch((err) => {
+			console.log(err + "fetching single merchant");
+		});
+
+	return data;
+};
+
+
+//VERIFY ALL ACCOUNT
+const sagaVerifyMerchant = async (id) => {
+	const url = API.ADMIN_BASE_URL + "/account/verify";
 
 	
-	const merchant = {
-		account_id: merchant_id.toString()
+	const user = {
+		account_id: id.toString()
 	}
-	console.log(merchant)
+	
 	const data = await axios
-		.post(url, merchant, config)
+		.post(url, user, config)
 		.then((response) => {
 			console.log(response.data)
 			return response.data;
@@ -55,6 +75,19 @@ const sagaVerifyMerchant = async (merchant_id) => {
 	return data;
 };
 
+//UPGRADE  MERCHANT
+const sagaUpgradeMerchant = async (merchant_id)=>{
+	const url = API.ADMIN_BASE_URL + "/admin/upgrade"
+	const merchant = {
+		account_id: merchant_id.toString()
+	  }
+	const data = await axios.post(url, merchant, config).then((response)=>{
+			console.log(response.data)
+			return response.data
+	})
+
+	return data
+}
 // function* postCategory(payload) {
 // 	try {
 // 		const isCateAdded = yield call(sagaAddCategory, payload.category);
@@ -73,10 +106,28 @@ function* getAllMechants() {
 	}
 }
 
+function* getSingleMechant({merchant_id}) {
+	try {
+		const merchant = yield call(sagaFetchSingleMerchant, merchant_id);
+		yield put(actionSuccessGetSingleMechant (merchant));
+	} catch (err) {
+		console.log(err);
+	}
+}
+
 function* verifyMerchant(payload) {
 	try {
-		const merchants = yield call(sagaVerifyMerchant, payload.merchant_id);
+		const merchants = yield call(sagaVerifyMerchant, payload.id);
 		yield put(actionSuccessVerifyMechant(merchants));
+	} catch (err) {
+		console.log(err);
+	}
+}
+
+function* upgradeMerchant(payload) {
+	try {
+		const isUpgraded = yield call(sagaUpgradeMerchant, payload.merchant_id);
+		yield put(actionUpgradeMerchantSuccess(isUpgraded));
 	} catch (err) {
 		console.log(err);
 	}
@@ -93,5 +144,7 @@ function* verifyMerchant(payload) {
 
 export default function* rootSaga() {
 	yield all([takeEvery(actionTypes.GET_ALL_MERCHANTS, getAllMechants)]);
+	yield all([takeEvery(actionTypes.GET_SINGLE_MERCHANT, getSingleMechant)]);
 	yield all([takeEvery(actionTypes.VERIFY_MERCHANT, verifyMerchant)]);
+	yield all([takeEvery(actionTypes.UPGRADE_MERCHANT, upgradeMerchant)]);
 }

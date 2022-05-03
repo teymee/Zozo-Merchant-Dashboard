@@ -7,6 +7,7 @@ import {
 	actionTypes,
 	actionGetAllCustomers,
 	actionSuccessGetAllCustomers,
+	actionSuccessGetSingleCustomer,
 } from "./action";
 import axios from "axios";
 import { API } from "../API/Api";
@@ -18,14 +19,15 @@ const config = {
 		Authorization: "Bearer" + API.TOKEN,
 	},
 };
-//FETCH CATEGORIES
+
+//FETCH ALL CUSTOMERS
 const sagaFetchCustomers = async () => {
-	const url = API.BASE_URL + "/customers";
+	const url = API.ADMIN_BASE_URL + "/customer";
 
 	const data = await axios
 		.get(url, config)
 		.then((response) => {
-			return response.data.merchant;
+			return response.data.customer;
 		})
 		.catch((err) => {
 			console.log(err + "fetching Customers");
@@ -33,6 +35,38 @@ const sagaFetchCustomers = async () => {
 
 	return data;
 };
+
+//FETCH SINGLE CUSTOMER
+const sagaFetchSingleCustomer = async (customer_id) => {
+	const url = API.ADMIN_BASE_URL + "/customer/"+customer_id;
+
+	console.log(url)
+	const data = await axios
+		.get(url, config)
+		.then((response) => {
+
+			return response.data.customer;
+		})
+		.catch((err) => {
+			console.log(err + "fetching single customer");
+		});
+
+	return data;
+};
+
+//UPGRADE CUSTOMER
+const sagaUpgradeCustomer = async (customer_id)=>{
+	const url = API.BASE_URL + "/customer/upgrade"
+	const customer = {
+		account_id: customer_id.toString()
+	  }
+	const data = await axios.post(url, customer, config).then((response)=>{
+			console.log(response.data)
+			return response.data
+	})
+
+	return data
+}
 
 // function* postCategory(payload) {
 // 	try {
@@ -52,6 +86,23 @@ function* getAllCustomers() {
 	}
 }
 
+function* getSingleCustomer({customer_id}) {
+	try {
+		const customer = yield call(sagaFetchSingleCustomer, customer_id);
+		yield put(actionSuccessGetSingleCustomer (customer));
+	} catch (err) {
+		console.log(err);
+	}
+}
+
+function* upgradeCustomer(payload) {
+	try {
+		const isUpgraded = yield call(sagaUpgradeCustomer, payload.customer_id);
+		yield put(actionUpgradeCustomerSuccess(isUpgraded));
+	} catch (err) {
+		console.log(err);
+	}
+}
 // function* deleteCategory(payload) {
 // 	try {
 // 		const isDeleted = yield call(sagaDeleteCategories, payload.id);
@@ -63,4 +114,6 @@ function* getAllCustomers() {
 
 export default function* rootSaga() {
 	yield all([takeEvery(actionTypes.GET_ALL_CUSTOMERS, getAllCustomers)]);
+	yield all([takeEvery(actionTypes.GET_SINGLE_CUSTOMER, getSingleCustomer)]);
+	yield all([takeEvery(actionTypes.UPGRADE_CUSTOMER, upgradeCustomer)]);
 }

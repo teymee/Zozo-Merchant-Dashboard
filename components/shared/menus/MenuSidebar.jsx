@@ -12,16 +12,16 @@ const MenuSidebar = () => {
 		},
 		
 		{
+			text: "Categories",
+			url: "/categories",
+			icon: "icon-users2",
+		},
+		{
 			text: "Products",
 			url: "/products",
 			icon: "icon-database",
 		},
 
-		{
-			text: "Categories",
-			url: "/categories",
-			icon: "icon-users2",
-		},
 		{
 			text: "Pending Auctions",
 			url: "/bids/pending",
@@ -33,15 +33,16 @@ const MenuSidebar = () => {
 			icon: "icon-cog",
 		},
 		{
-			text: "Completed Auctions",
-			url: "/bids/completed",
-			icon: "icon-cog",
-		},
-		{
 			text: "Ongoing Auctions",
 			url: "/bids/ongoing",
 			icon: "icon-cog",
 		},
+		{
+			text: "Completed Auctions",
+			url: "/bids/completed",
+			icon: "icon-cog",
+		},
+	
 		
 		{
 			text: "Orders",

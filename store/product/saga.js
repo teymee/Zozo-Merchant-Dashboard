@@ -12,9 +12,17 @@ import {
 import axios from "axios";
 import { API } from "../API/Api";
 
+
+const modalSuccess = (type) => {
+	notification[type]({
+		message: "Successful",
+		description: "Product Added successful!",
+	});
+};
+
 // POST PRODUCT
 const sagaAddProduct = async (product) => {
-	const url = API.MERCHANT_BASE_URL + "/product/add";
+	const url = API.MERCHANT_ADMIN_BASE_URL + "/product/add";
 	const config = {
 		headers: {
 			Authorization: "Bearer" + API.TOKEN,
@@ -34,7 +42,7 @@ const sagaAddProduct = async (product) => {
 
 //GET SPECIFIC MERCHANT'S PRODUCT
 const sagaGetMerchantProducts = async (id) => {
-	const url = API.MERCHANT_BASE_URL + "/product/all/" + id;
+	const url = API.MERCHANT_ADMIN_BASE_URL + "/product/all/" + id;
 	const config = {
 		headers: {
 			Authorization: "Bearer" + API.TOKEN,
@@ -53,6 +61,7 @@ function* postProduct(payload) {
 	try {
 		const isProductAdded = yield call(sagaAddProduct, payload.product);
 		yield put(addProductSuccess(isProductAdded));
+		modalSuccess("success");
 	} catch (err) {
 		console.log(err + "adding product saga");
 	}

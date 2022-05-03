@@ -8,17 +8,16 @@ import {
 	actionTypes,
 } from "./action";
 
-
 const config = {
 	headers: {
-		Authorization: "Bearer" + API.TOKEN,
+		Authorization: "Bearer " + API.TOKEN,
 	},
 };
 
 //POST CREAT BID EVENT
 const sagaCreateBidEvent = async (event) => {
 	console.log("saga func");
-	const url = API.MERCHANT_BASE_URL + "/bidding";
+	const url = API.MERCHANT_ADMIN_BASE_URL + "/bidding";
 	const config = {
 		headers: {
 			Authorization: "Bearer " + API.TOKEN,
@@ -33,26 +32,54 @@ const sagaCreateBidEvent = async (event) => {
 };
 
 const sagaAdminFetchBidEvent = async (status) => {
-	const url = API.BASE_URL + "/bidding/status";
+	let data;
+	if (status === "pending") {
+		const url = API.ADMIN_BASE_URL + "/bidding";
 
+		console.log(status);
+		data = axios.get(url, config).then((response) => {
+			const pendingBids = response.data.bidding_event.filter((bid) => {
+				return bid.approved === false;
+			});
+			return pendingBids;
+		});
+	} else if (status === "approved") {
+		const url = API.ADMIN_BASE_URL + "/bidding";
 
-	const data = axios.post(url, status, config).then((response) => {
-		console.log(response.data);
-		return response.data;
-	});
+		console.log(status);
+		data = axios.get(url, config).then((response) => {
+			console.log(response.data.bidding_event)
+			const approvedBids = response.data.bidding_event.filter((bid) => {
+				return bid.approved === true;
+			});
+			return approvedBids;
+		});
+	} else {
+		const url = API.ADMIN_BASE_URL + "/bidding/status";
+
+		const eventStatus = {
+			status,	
+		};
+
+		console.log(eventStatus);
+		data = axios.post(url, eventStatus, config).then((response) => {
+			console.log(response.data);
+			return response.data.bidding_event;
+		});
+	}
 
 	return data;
 };
 
 const sagaApproveBidEvent = async (event_id) => {
 	console.log("saga func");
-	const url = API.BASE_URL + "/bidding/approve/" + event_id;
+	const url = API.ADMIN_BASE_URL + "/bidding/approve/" + event_id;
 	const config = {
 		headers: {
 			Authorization: "Bearer " + API.TOKEN,
 		},
 	};
-	console.log(url)
+	console.log(url);
 	const data = axios.post(url, event_id, config).then((response) => {
 		console.log(response.data);
 		return response.data;
@@ -72,11 +99,9 @@ function* createBidEvent(payload) {
 
 function* adminFetchBidEvent(payload) {
 	try {
-		const getAllBidEvent = yield call(
-			sagaAdminFetchBidEvent,
-			payload.event
-		);
-		yield put(actionAdminFetchAuctionsSuccess(getAllBidEvent.bidding_event));
+		const getAllBidEvent = yield call(sagaAdminFetchBidEvent, payload.status);
+		console.log(getAllBidEvent)
+		yield put(actionAdminFetchAuctionsSuccess(getAllBidEvent));
 	} catch (err) {
 		console.log(err);
 	}
@@ -85,7 +110,7 @@ function* adminFetchBidEvent(payload) {
 function* approveBidEvent(payload) {
 	try {
 		const isApproved = yield call(sagaApproveBidEvent, payload.event_id);
-            console.log(isApproved)
+		console.log(isApproved);
 		yield put(actionApproveEventSuccess(isApproved));
 	} catch (err) {
 		console.log(err);

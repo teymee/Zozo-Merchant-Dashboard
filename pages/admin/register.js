@@ -29,7 +29,10 @@ function Register() {
 		console.log("Admin Register");
 		dispatch(register(registerCred));
 		if(isRegistered){
-			router.push('/')
+			setTimeout(()=>{
+				router.push('/')
+			},2000)
+			console.log("user registered")
 		}
 	};
 	return (

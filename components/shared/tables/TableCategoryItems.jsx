@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { fetchCategory } from "~/store/category/action";
-import CategoryColumn from "./table-columns/CategoryColum";
+import CategoryColumn from "./table-columns/CategoryColumn";
 
 const TableCategoryItems = () => {
 	const dispatch = useDispatch();

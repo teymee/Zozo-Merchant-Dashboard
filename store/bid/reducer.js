@@ -18,10 +18,10 @@ function reducer(state = initialState, action) {
 				...{ bidPostLoading: false },
 			};
 			
-		case actionTypes. ADMIN_FETCH_PENDING_BID_EVENT_SUCCESS:
+		case actionTypes. ADMIN_FETCH_BID_EVENTS_SUCCESS:
 			return {
 				...state,
-				...{ pendingBids: action.pendingBids, bidGetLoading: false },
+				...{ bids: action.auctions, bidGetLoading: false },
 			};
 			
 		// case actionTypes.bidGORY_DELETE_SUCCESS:

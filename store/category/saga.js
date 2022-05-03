@@ -10,10 +10,26 @@ import {
 import axios from "axios";
 import { API } from "../API/Api";
 
+
+const modalSuccess = (type) => {
+	notification[type]({
+		message: "Successful",
+		description: "Category Added Successfully",
+	});
+};
+
+
+const modalDeleteSuccess = (type) => {
+	notification[type]({
+		message: "Successful",
+		description: "Category Deleted Successfully",
+	});
+};
+
 // NEW
 // ADD CATEGORY
 const sagaAddCategory = async (cate) => {
-	const url = API.BASE_URL + "/category/create";
+	const url = API.ADMIN_BASE_URL + "/category/create";
 	const config = {
 		headers: {
 			Authorization: "Bearer" + API.TOKEN,
@@ -34,7 +50,7 @@ const sagaAddCategory = async (cate) => {
 
 //FETCH CATEGORIES
 const sagaFetchCategories = async () => {
-	const url = API.BASE_URL + "/category";
+	const url = API.ADMIN_BASE_URL + "/category";
 	const config = {
 		headers: {
 			Authorization: "Bearer" + API.TOKEN,
@@ -55,7 +71,7 @@ const sagaFetchCategories = async () => {
 
 //DELETECATEGORIES
 const sagaDeleteCategories = async (id) => {
-	const url = API.BASE_URL + "/category/id/" + id;
+	const url = API.ADMIN_BASE_URL + "/category/id/" + id;
 	const config = {
 		headers: {
 			Authorization: "Bearer" + API.TOKEN,
@@ -78,6 +94,7 @@ function* postCategory(payload) {
 	try {
 		const isCateAdded = yield call(sagaAddCategory, payload.category);
 		yield put(addCategorySuccess(isCateAdded));
+		modalSuccess("success");
 	} catch (err) {
 		console.log(err);
 	}
@@ -96,6 +113,7 @@ function* deleteCategory(payload) {
 	try {
 		const isDeleted = yield call(sagaDeleteCategories, payload.id);
 		yield put(deleteCategorySuccess(isDeleted));
+		modalDeleteSuccess("success");
 	} catch (err) {
 		console.log(err);
 	}

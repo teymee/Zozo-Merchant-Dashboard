@@ -6,6 +6,8 @@ export const initialState = {
 	customerGetLoading: true,
 	customerDeleteLoading: true,
 	deletedMsg: null,
+	customerDetails:null,
+	singleCustomerGetLoading: true,
 };
 export const initState = {
 	isLoggedIn: false,
@@ -24,6 +26,12 @@ function reducer(state = initialState, action) {
 				...state,
 				...{ customers: action.customers, customerGetLoading: false },
 			};
+
+			case actionTypes.GET_SINGLE_CUSTOMER_SUCCESS:
+				return {
+					...state,
+					...{ customerDetails: action.customer_details, singleCustomerGetLoading: false },
+				};
 			
 		// case actionTypes.customers_DELETE_SUCCESS:
 		// 	return {

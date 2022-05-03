@@ -22,7 +22,8 @@ const Index = () => {
 					<div className="row">
 						<div className={`col-xl-8 col-12 ${styles.cardStatics}`}>
 							{/* <CardSaleReport /> */}
-							<CardEarning />
+							{/* <CardEarning /> */}
+							
 						</div>
 						{/* <div className="col-xl-4 col-12">
                         <CardRecentOrders title="New Customers" />

@@ -4,8 +4,10 @@ export const initialState = {
 	merchants: null,
 	merchantPostLoading: true,
 	merchantGetLoading: true,
+	singleMerchantGetLoading: true,
 	merchantDeleteLoading: true,
 	deletedMsg: null,
+	merchantDetails:null
 };
 export const initState = {
 	isLoggedIn: false,
@@ -24,6 +26,12 @@ function reducer(state = initialState, action) {
 				...state,
 				...{ merchants: action.merchants, merchantGetLoading: false },
 			};
+
+			case actionTypes.GET_SINGLE_MERCHANT_SUCCESS:
+				return {
+					...state,
+					...{ merchantDetails: action.merchants_details, singleMerchantGetLoading: false },
+				};
 			
 		// case actionTypes.merchants_DELETE_SUCCESS:
 		// 	return {

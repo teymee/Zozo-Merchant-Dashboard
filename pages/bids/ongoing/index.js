@@ -5,11 +5,11 @@ import React from "react";
 import Pagination from "~/components/elements/basic/Pagination";
 import ContainerDefault from "~/components/layouts/ContainerDefault";
 import HeaderDashboard from "~/components/shared/headers/HeaderDashboard";
-import TablePendingBid from "~/components/shared/tables/TablePendingBid";
+import BidTable from "~/components/shared/tables/BidTable";
 
 function PendingBids() {
 	return (
-		<ContainerDefault title="Products">
+		<ContainerDefault title="Ongoing Bids">
 			<HeaderDashboard
 				title="Products"
 				description="Martfury Product Listing "
@@ -86,7 +86,7 @@ function PendingBids() {
 					</div>
 				</div>
 				<div className="ps-section__content">
-					<TablePendingBid />
+					<BidTable type="ongoing" />
 				</div>
 				<div className="ps-section__footer">
 					<p>Show 10 in 30 items.</p>

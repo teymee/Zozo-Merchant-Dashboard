@@ -24,15 +24,15 @@
       "static/chunks/webpack.js",
       "static/chunks/pages/_error.js"
     ],
-    "/bids/create-bid/[product]": [
+    "/merchants": [
       "static/chunks/main.js",
       "static/chunks/webpack.js",
-      "static/chunks/pages/bids/create-bid/[product].js"
+      "static/chunks/pages/merchants.js"
     ],
-    "/bids/pending": [
+    "/user/[type]/[user]": [
       "static/chunks/main.js",
       "static/chunks/webpack.js",
-      "static/chunks/pages/bids/pending.js"
+      "static/chunks/pages/user/[type]/[user].js"
     ]
   },
   "ampFirstPages": []

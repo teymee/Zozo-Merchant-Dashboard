@@ -15,6 +15,7 @@ function CreateBidPage() {
 		
 		console.log("Bid Event form submitted");
 		const product_id = route.query.product;
+		console.log(e.target.start_time.value)
 		const bidEvent = {
 			product_id,
 			start_time: e.target.start_time.value,

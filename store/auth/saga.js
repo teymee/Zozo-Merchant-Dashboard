@@ -5,6 +5,7 @@ import { notification } from "antd";
 import { actionTypes, loginSuccess, logOutSuccess, registerSuccess } from "./action";
 import { API } from "../API/Api";
 
+
 const modalSuccess = (type) => {
 	notification[type]({
 		message: "Welcome back",
@@ -21,13 +22,15 @@ const modalWarning = (type) => {
 
 const loginAdmin = async (loginCred) => {
 	console.log(loginCred);
-	const url = "https://zozo-auction.herokuapp.com/api/v1/login";
+	const url = API.BASE_URL + "login";
 
+	console.log(url)
 	const data = axios
 		.post(url, loginCred)
 		.then((response) => {
 			console.log(response.data);
 			localStorage.setItem("token", JSON.stringify(response.data.token));
+			
 			return response.data;
 		})
 		.catch((err) => {
@@ -38,7 +41,9 @@ const loginAdmin = async (loginCred) => {
 
 const registerAdmin = async (registerCred) => {
 	console.log(registerCred);
-	const url = "https://zozo-auction.herokuapp.com/api/v1/register";
+	// const url = "https://zozo-auction.herokuapp.com/api/v1/merchant/create"
+	const url = API.ADMIN_BASE_URL + "/admin/create";
+	console.log(url)
 
 	const data = axios
 		.post(url, registerCred)
