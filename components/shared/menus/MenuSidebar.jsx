@@ -59,11 +59,12 @@ const MenuSidebar = () => {
 			url: "/merchants",
 			icon: "icon-users2",
 		},
-		{
-			text: "Shipping",
-			url: "/shipping",
-			icon: "icon-cog",
-		},
+		// {
+		// 	text: "Shipping",
+		// 	url: "/shipping",
+		// 	icon: "icon-cog",
+		// },
+
 		// {
 		// 	text: "Cashout Requests",
 		// 	url: "/cashout_requests",

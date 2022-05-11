@@ -103,7 +103,7 @@ const CustomersPage = () => {
                     </div>
                 </div>
                 <div className="ps-section__content">
-                    <TableCustomerItems />
+                    {/* <TableCustomerItems /> */}
                 </div>
                 <div className="ps-section__footer">
                     <p>Show 10 in 30 items.</p>

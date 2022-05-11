@@ -4,7 +4,12 @@ import CustomerColumn from "./table-columns/CustomerColumn";
 import MerchantColumn from "./table-columns/MerchantColumn";
 
 const TableCustomerItems = ({ users, type }) => {
-	const userList = users.map((user, index) => {
+
+	const { customerGetLoading } = useSelector((state) => state.customer);
+
+	let userList;
+	if (!customerGetLoading) {
+	 userList = users.map((user, index) => {
 		let data;
 		if (type === "merchant") {
 			data = <MerchantColumn user={user} key={index} num={index} />;
@@ -13,6 +18,7 @@ const TableCustomerItems = ({ users, type }) => {
 		}
 		return data;
 	});
+}
 	return (
 		<div className="table-responsive">
 			<table className="table ps-table">
