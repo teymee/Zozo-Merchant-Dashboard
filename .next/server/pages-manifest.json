@@ -1,7 +1,0 @@
-{
-  "/_app": "pages/_app.js",
-  "/_error": "pages/_error.js",
-  "/_document": "pages/_document.js",
-  "/bids/pending": "pages/bids/pending.js",
-  "/bids/approved": "pages/bids/approved.js"
-}
