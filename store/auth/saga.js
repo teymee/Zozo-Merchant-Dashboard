@@ -20,16 +20,18 @@ const modalWarning = (type) => {
 	});
 };
 
+
+
 const loginAdmin = async (loginCred) => {
 	console.log(loginCred);
-	const url = API.BASE_URL + "login";
+	const url = API.BASE_URL + "/login";
 
 	console.log(url)
 	const data = axios
 		.post(url, loginCred)
 		.then((response) => {
 			console.log(response.data);
-			localStorage.setItem("token", JSON.stringify(response.data.token));
+			localStorage.setItem("token", response.data.token);
 			
 			return response.data;
 		})
@@ -42,14 +44,14 @@ const loginAdmin = async (loginCred) => {
 const registerAdmin = async (registerCred) => {
 	console.log(registerCred);
 	// const url = "https://zozo-auction.herokuapp.com/api/v1/merchant/create"
-	const url = API.ADMIN_BASE_URL + "/admin/create";
+	const url = API.MERCHANT_BASE_URL + "/create";
 	console.log(url)
 
 	const data = axios
 		.post(url, registerCred)
 		.then((response) => {
 			console.log(response.data.token);
-			localStorage.setItem("token", JSON.stringify(response.data.token));
+			localStorage.setItem("token", response.data.account.token);
 			return response.data;
 		})
 		.catch((err) => {
@@ -64,7 +66,7 @@ function* loginSaga(payload) {
 	try {
 		const isLogin = yield call(loginAdmin, payload.loginCred);
 		if (isLogin) {
-			yield put(loginSuccess());
+			yield put(loginSuccess(isLogin));
 			modalSuccess("success");
 		}
 	} catch (err) {
@@ -77,7 +79,7 @@ function* registerSaga(payload) {
         console.log(payload.registerCred)
 		const isRegistered = yield call(registerAdmin, payload.registerCred);
 		if (isRegistered) {
-			yield put(registerSuccess());
+			yield put(registerSuccess(isRegistered));
 			modalSuccess("success");
 		}
 	} catch (err) {

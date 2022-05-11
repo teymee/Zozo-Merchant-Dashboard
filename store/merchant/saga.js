@@ -21,7 +21,7 @@ const config = {
 
 //FETCH ALL MERCHANTS
 const sagaFetchMerchants = async () => {
-	const url = API.ADMIN_BASE_URL + "/merchant";
+	const url = API.MERCHANT_BASE_URL + "/merchant";
 
 	const data = await axios
 		.get(url, config)
@@ -37,7 +37,7 @@ const sagaFetchMerchants = async () => {
 
 //FETCH SINGLE MERCHANT
 const sagaFetchSingleMerchant = async (merchant_id) => {
-	const url = API.ADMIN_BASE_URL + "/merchant/"+merchant_id;
+	const url = API.MERCHANT_BASE_URL + "/merchant/"+merchant_id;
 
 	const data = await axios
 		.get(url, config)
@@ -55,7 +55,7 @@ const sagaFetchSingleMerchant = async (merchant_id) => {
 
 //VERIFY ALL ACCOUNT
 const sagaVerifyMerchant = async (id) => {
-	const url = API.ADMIN_BASE_URL + "/account/verify";
+	const url = API.MERCHANT_BASE_URL + "/account/verify";
 
 	
 	const user = {
@@ -77,7 +77,7 @@ const sagaVerifyMerchant = async (id) => {
 
 //UPGRADE  MERCHANT
 const sagaUpgradeMerchant = async (merchant_id)=>{
-	const url = API.ADMIN_BASE_URL + "/admin/upgrade"
+	const url = API.MERCHANT_BASE_URL + "/admin/upgrade"
 	const merchant = {
 		account_id: merchant_id.toString()
 	  }

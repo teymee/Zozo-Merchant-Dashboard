@@ -6,14 +6,12 @@ import { toggleDrawerMenu } from "~/store/app/action";
 import { addProduct } from "~/store/product/action";
 import { useSelector } from "react-redux";
 import { fetchCategory } from "~/store/category/action";
-import Router  from "next/router";
-
-
+import Router from "next/router";
 
 const CreateProductPage = () => {
 	const dispatch = useDispatch();
 	const [productCategory, setProductCategory] = useState([]);
-	
+
 	useEffect(() => {
 		dispatch(toggleDrawerMenu(false));
 		dispatch(fetchCategory());
@@ -35,7 +33,7 @@ const CreateProductPage = () => {
 		setProductCategory(selected);
 	};
 
-	if (!cateGetLoading) {
+	if (!cateGetLoading && category) {
 		categories = category.map((cate, index) => {
 			return (
 				<option key={index} value={cate.id}>
@@ -53,7 +51,6 @@ const CreateProductPage = () => {
 		const category = productCategory;
 
 		const product = {
-			merchant_id: "1",
 			name: e.target.product.value,
 			description: e.target.description.value,
 			category,
@@ -70,10 +67,9 @@ const CreateProductPage = () => {
 		};
 		dispatch(addProduct(product));
 
-		if(!productPostLoading){
-
+		if (!productPostLoading) {
 			setTimeout(() => {
-				Router.push('/products')
+				Router.push("/products");
 			}, 2000);
 		}
 	};

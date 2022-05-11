@@ -7,11 +7,14 @@ import Link from "next/link";
 const DropdownAction = ({ type, id }) => {
 	const dispatch = useDispatch();
 	console.log(type)
-	let url
+	console.log(id)
+	let url 
 	if(type === "customer"){
 		url = '/user/customer/'+id
 	}else if(type === "merchant"){
 		url = '/user/merchant/'+id
+	}else if(type === "product"){
+		url = '/products/'+id
 	}
    
 	const deleteCategory = () => {
@@ -22,6 +25,8 @@ const DropdownAction = ({ type, id }) => {
 				break;
 		}
 	};
+
+	console.log(url)
 
 	const menuView = (
 		<Menu>

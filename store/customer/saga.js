@@ -22,7 +22,7 @@ const config = {
 
 //FETCH ALL CUSTOMERS
 const sagaFetchCustomers = async () => {
-	const url = API.ADMIN_BASE_URL + "/customer";
+	const url = API.MERCHANT_BASE_URL + "/customer";
 
 	const data = await axios
 		.get(url, config)
@@ -38,7 +38,7 @@ const sagaFetchCustomers = async () => {
 
 //FETCH SINGLE CUSTOMER
 const sagaFetchSingleCustomer = async (customer_id) => {
-	const url = API.ADMIN_BASE_URL + "/customer/"+customer_id;
+	const url = API.MERCHANT_BASE_URL + "/customer/"+customer_id;
 
 	console.log(url)
 	const data = await axios

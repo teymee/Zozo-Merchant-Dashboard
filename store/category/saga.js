@@ -29,7 +29,7 @@ const modalDeleteSuccess = (type) => {
 // NEW
 // ADD CATEGORY
 const sagaAddCategory = async (cate) => {
-	const url = API.ADMIN_BASE_URL + "/category/create";
+	const url = API.MERCHANT_BASE_URL + "/category/create";
 	const config = {
 		headers: {
 			Authorization: "Bearer" + API.TOKEN,
@@ -50,7 +50,7 @@ const sagaAddCategory = async (cate) => {
 
 //FETCH CATEGORIES
 const sagaFetchCategories = async () => {
-	const url = API.ADMIN_BASE_URL + "/category";
+	const url = API.BASE_URL + "/customer/category";
 	const config = {
 		headers: {
 			Authorization: "Bearer" + API.TOKEN,
@@ -71,7 +71,7 @@ const sagaFetchCategories = async () => {
 
 //DELETECATEGORIES
 const sagaDeleteCategories = async (id) => {
-	const url = API.ADMIN_BASE_URL + "/category/id/" + id;
+	const url = API.MERCHANT_BASE_URL + "/category/id/" + id;
 	const config = {
 		headers: {
 			Authorization: "Bearer" + API.TOKEN,

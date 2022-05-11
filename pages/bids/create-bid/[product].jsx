@@ -15,11 +15,13 @@ function CreateBidPage() {
 		
 		console.log("Bid Event form submitted");
 		const product_id = route.query.product;
-		console.log(e.target.start_time.value)
+		const newStartDate =e.target.start_time.value.toLocaleString()
+		const newEndDate =e.target.end_time.value.toLocaleString()
+		
 		const bidEvent = {
 			product_id,
-			start_time: e.target.start_time.value,
-			end_time: e.target.end_time.value,
+			start_time: newStartDate,
+			end_time: newEndDate,
 			access_amount: e.target.access_amount.value,
 			minimum_amount: e.target.minimum_amount.value,
 		};

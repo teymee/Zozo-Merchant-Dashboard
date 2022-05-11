@@ -11,7 +11,7 @@ const withImages = require('next-images');
 
 const nextSettings = {
     env: {
-        title: 'Zozo Admin',
+        title: 'Zozo Merchant',
         titleDescription: 'Admin Dashboard',
     },
 };

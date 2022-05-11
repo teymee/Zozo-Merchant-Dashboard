@@ -11,18 +11,18 @@ function PendingBids() {
 	return (
 		<ContainerDefault title="Approved Bids">
 			<HeaderDashboard
-				title="Products"
-				description="Martfury Product Listing "
+				title="Approved"
+				description="List of Approved Auctions "
 			/>
 			<section className="ps-items-listing">
-				<div className="ps-section__actions">
+				{/* <div className="ps-section__actions">
 					<Link href="/products/create-product">
 						<a className="ps-btn success">
 							<i className="icon icon-plus mr-2" />
 							New Product
 						</a>
 					</Link>
-				</div>
+				</div> */}
 				<div className="ps-section__header">
 					<div className="ps-section__filter">
 						<form className="ps-form--filter" action="index.html" method="get">

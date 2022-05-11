@@ -14,7 +14,35 @@ function BidColumn({bidEvent, num, type}) {
             dispatch(actionApproveEvent(bidEvent.id))
       }
 
-
+	const cancelEvent = () => {
+		console.log(" Cancel event");
+		dispatch(actionCancelEvent(bidEvent.id));
+	};
+	let button
+	if(type === 'approved'){
+		button = null
+	}else if (type === "pending") {
+	button = (
+			<>
+				<td>
+					<button onClick={approveEvent} className={styles.createEventButton}>
+						Approve
+					</button>
+				</td>
+				<td>
+					<button onClick={cancelEvent} className={styles.declineEventButton}>
+						Delcine
+					</button>
+				</td>
+			</>
+		);
+	} else if (type === "completed") {
+		button = (
+			<td>
+				<strong>{bidEvent.winner === null ? "No Winner" : `${bidEvent.winner.customer.account.first_name} ${bidEvent.winner.customer.account.last_name}` }</strong>
+			</td>
+		);
+	}
 
 	return (
 		<tr>
@@ -22,19 +50,21 @@ function BidColumn({bidEvent, num, type}) {
 			<td>
 				<strong>{bidEvent.product.name}</strong>
 			</td>
-			<td>{dateFormat(bidEvent.start_time)}</td>
+		
 			<td>{bidEvent.access_amount}</td>
 			<td>{bidEvent.minimum_amount}</td>
-			<td>{dateFormat(bidEvent.createdAt)}</td>
+			<td>{dateFormat(bidEvent.start_time)}</td>
+			<td>{dateFormat(bidEvent.end_time)}</td>
 			{/* <td>{badgeView}</td> */}
-			<td>
+			{/* <td>
 				<button onClick={approveEvent} className={styles.createEventButton}>Approve</button>
 			</td>
 			<td>
 				<button onClick={approveEvent} className={styles.declineEventButton}>Delcine</button>
-			</td>
+			</td> */}
+			{button}
 			<td>
-				<DropdownAction type="bidEvent" id={bidEvent.id} key={num + 1} />
+				<DropdownAction type={type} id={bidEvent.id} key={num + 1} />
 			</td>
 		</tr>
 	);

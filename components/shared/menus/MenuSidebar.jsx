@@ -11,11 +11,11 @@ const MenuSidebar = () => {
 			icon: "icon-home",
 		},
 		
-		{
-			text: "Categories",
-			url: "/categories",
-			icon: "icon-users2",
-		},
+		// {
+		// 	text: "Categories",
+		// 	url: "/categories",
+		// 	icon: "icon-users2",
+		// },
 		{
 			text: "Products",
 			url: "/products",
@@ -49,11 +49,11 @@ const MenuSidebar = () => {
 			url: "/orders",
 			icon: "icon-bag2",
 		},
-		{
-			text: "Customers",
-			url: "/customers",
-			icon: "icon-users2",
-		},
+		// {
+		// 	text: "Customers",
+		// 	url: "/customers",
+		// 	icon: "icon-users2",
+		// },
 		{
 			text: "Merchants",
 			url: "/merchants",
@@ -64,16 +64,16 @@ const MenuSidebar = () => {
 			url: "/shipping",
 			icon: "icon-cog",
 		},
-		{
-			text: "Cashout Requests",
-			url: "/cashout_requests",
-			icon: "icon-cog",
-		},
-		{
-			text: "Approved Cashouts",
-			url: "/approved_cashouts",
-			icon: "icon-cog",
-		},
+		// {
+		// 	text: "Cashout Requests",
+		// 	url: "/cashout_requests",
+		// 	icon: "icon-cog",
+		// },
+		// {
+		// 	text: "Approved Cashouts",
+		// 	url: "/approved_cashouts",
+		// 	icon: "icon-cog",
+		// },
 	
 		{
 			text: "Settings",

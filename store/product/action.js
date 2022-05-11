@@ -5,6 +5,8 @@ export const actionTypes = {
 	MERCHANT_PRODUCT_GET_SUCCESS: "MERCHANT_PRODUCT_GET_SUCCESS",
 	PRODUCT_DELETE: "PRODUCT_DELETE",
 	PRODUCT_DELETE_SUCCESS: "PRODUCT_DELETE_SUCCESS",
+	GET_PRODUCT_DETAILS: "GET_PRODUCT_DETAILS",
+	GET_PRODUCT_DETAILS_SUCCESS: "GET_PRODUCT_DETAILS_SUCCESS",
 };
 
 export function addProduct(product) {
@@ -15,7 +17,7 @@ export function addProduct(product) {
 
 export function addProductSuccess(productMsg) {
 	const isAddedMsg = " Product added successfully";
-	console.log(isAddedMsg)
+	console.log(isAddedMsg);
 
 	return { type: actionTypes.PRODUCT_POST_SUCCESS, isAddedMsg };
 }
@@ -27,6 +29,17 @@ export function getMerchantProduct(id) {
 }
 
 export function getMerchantProductSuccess(merchantProducts) {
-      console.log(merchantProducts)
+	console.log(merchantProducts);
 	return { type: actionTypes.MERCHANT_PRODUCT_GET_SUCCESS, merchantProducts };
+}
+
+export function getProductDetails(id) {
+	console.log("product details");
+
+	return { type: actionTypes.GET_PRODUCT_DETAILS, id };
+}
+
+export function getProductDetailsSuccess(product) {
+	console.log(product);
+	return { type: actionTypes.GET_PRODUCT_DETAILS_SUCCESS, product };
 }
