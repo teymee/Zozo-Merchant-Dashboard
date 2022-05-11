@@ -14,6 +14,9 @@ const nextSettings = {
         title: 'Zozo Merchant',
         titleDescription: 'Admin Dashboard',
     },
+    eslint: {
+        ignoreDuringBuilds: true,
+      },
 };
 
 module.exports = withPlugins([withImages(), nextSettings]);
