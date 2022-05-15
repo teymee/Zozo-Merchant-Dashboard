@@ -7,6 +7,7 @@ import HeaderDashboard from '~/components/shared/headers/HeaderDashboard';
 import { connect, useDispatch } from 'react-redux';
 import { toggleDrawerMenu } from '~/store/app/action';
 import { Select } from 'antd';
+import protectedRoute from '../HOC/protectedRoute';
 
 const { Option } = Select;
 const CustomersPage = () => {
@@ -113,4 +114,6 @@ const CustomersPage = () => {
         </ContainerDefault>
     );
 };
-export default connect((state) => state.app)(CustomersPage);
+
+
+export default protectedRoute(connect((state) => state.app)(CustomersPage)) ;

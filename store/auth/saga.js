@@ -20,6 +20,20 @@ const modalWarning = (type) => {
 	});
 };
 
+const modalLoginFailed = (type) => {
+	notification[type]({
+		message: "Login Failed",
+		description: "Invalid Email or Password",
+	});
+};
+
+
+const modalRegistrationSuccess = (type) => {
+	notification[type]({
+		message: "Welcome =",
+		description: "Registered Successfully",
+	});
+};
 
 
 const loginAdmin = async (loginCred) => {
@@ -32,7 +46,6 @@ const loginAdmin = async (loginCred) => {
 		.then((response) => {
 			console.log(response.data);
 			localStorage.setItem("token", response.data.token);
-			
 			return response.data;
 		})
 		.catch((err) => {
@@ -62,25 +75,34 @@ const registerAdmin = async (registerCred) => {
 
 
 
-function* loginSaga(payload) {
+function* loginSaga({payload}) {
 	try {
 		const isLogin = yield call(loginAdmin, payload.loginCred);
 		if (isLogin) {
 			yield put(loginSuccess(isLogin));
 			modalSuccess("success");
+			payload.router.push('/')
+			// setTimeout(()=>{
+			
+			// },2000)
+		}else{
+			modalLoginFailed("warning");
 		}
 	} catch (err) {
 		console.log(err);
 	}
 }
 
-function* registerSaga(payload) {
+function* registerSaga({payload}) {
 	try {
         console.log(payload.registerCred)
 		const isRegistered = yield call(registerAdmin, payload.registerCred);
 		if (isRegistered) {
 			yield put(registerSuccess(isRegistered));
-			modalSuccess("success");
+			modalRegistrationSuccess("success");
+	setTimeout(()=>{
+		payload.router.push('/')
+	},2000)
 		}
 	} catch (err) {
 		console.log(err);

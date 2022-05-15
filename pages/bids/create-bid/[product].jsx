@@ -3,6 +3,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import ContainerDefault from "~/components/layouts/ContainerDefault";
 import HeaderDashboard from "~/components/shared/headers/HeaderDashboard";
+import protectedRoute from "~/pages/HOC/protectedRoute";
 import { actionCreateBidEvent } from "~/store/bid/action";
 
 function CreateBidPage() {
@@ -105,4 +106,4 @@ function CreateBidPage() {
 	);
 }
 
-export default CreateBidPage;
+export default protectedRoute(CreateBidPage);

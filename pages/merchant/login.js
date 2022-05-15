@@ -1,34 +1,24 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "~/store/auth/action";
-import { useRouter } from 'next/router'
+import { useRouter } from "next/router";
 import styles from "./auth.module.css";
+import authRoute from "../HOC/authRoute";
 
 function LoginAdmin() {
-	const router = useRouter()
-      const dispatch = useDispatch()
-	const {isLoggedIn} = useSelector(state=>state.auth)
-      const loginAdmin = (e)=>{
-            e.preventDefault()
-            const loginCred= {
-                  email: e.target.email.value,
-                  password:e.target.password.value
-            }
-            console.log('Admin Login')
-            dispatch(login(loginCred))
-		console.log(isLoggedIn)
-		setTimeout(()=>{
-			router.push('/')
-		},2000)
-		// if(isLoggedIn){
-		// 	setTimeout(()=>{
-		// 		router.push('/')
-		// 	},2000)
-		// 	console.log("user logged in")
-		// }
-      }
-
-
+	const router = useRouter();
+	const dispatch = useDispatch();
+	const { isLoggedIn } = useSelector((state) => state.auth);
+	const loginAdmin = (e) => {
+		e.preventDefault();
+		const loginCred = {
+			email: e.target.email.value,
+			password: e.target.password.value,
+		};
+		console.log("Admin Login");
+		dispatch(login({ loginCred, router }));
+		console.log(isLoggedIn);
+	};
 
 	return (
 		<div className={styles.authForm}>
@@ -45,11 +35,11 @@ function LoginAdmin() {
 						<input type="password" required name="password" />
 					</div>
 
-                              <button>Login</button>
+					<button>Login</button>
 				</form>
 			</div>
 		</div>
 	);
 }
 
-export default LoginAdmin;
+export default authRoute(LoginAdmin);

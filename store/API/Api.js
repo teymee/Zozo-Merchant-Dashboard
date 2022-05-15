@@ -8,9 +8,9 @@ if (!ISSERVER) {
 }
 
 export const API = {
-	MERCHANT_BASE_URL: "http://smart-park.xyz/api/v1/merchant",
-	BASE_URL: "http://smart-park.xyz/api/v1",
-	MERCHANT_MERCHANT_BASE_URL: "http://smart-park.xyz/api/v1/merchant",
+	MERCHANT_BASE_URL: "https://smart-park.xyz/api/v1/merchant",
+	BASE_URL: "https://smart-park.xyz/api/v1",
+	MERCHANT_MERCHANT_BASE_URL: "https://smart-park.xyz/api/v1/merchant",
 	TOKEN: token,
 
 };

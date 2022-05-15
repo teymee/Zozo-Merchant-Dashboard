@@ -4,6 +4,7 @@ import FormAccountSettings from '~/components/shared/forms/FormAccountSettings';
 import HeaderDashboard from '~/components/shared/headers/HeaderDashboard';
 import { connect, useDispatch } from 'react-redux';
 import { toggleDrawerMenu } from '~/store/app/action';
+import protectedRoute from '../HOC/protectedRoute';
 
 const SettingsPage = () => {
     const dispatch = useDispatch();
@@ -29,4 +30,4 @@ const SettingsPage = () => {
         </ContainerDefault>
     );
 };
-export default connect((state) => state.app)(SettingsPage);
+export default protectedRoute(connect((state) => state.app)(SettingsPage));

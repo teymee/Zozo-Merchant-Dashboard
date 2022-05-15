@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 import { toggleDrawerMenu } from "~/store/app/action";
 import CardTopCountries from "~/components/shared/cards/CardTopCountries";
 import styles from "./dashboardExtrastyle.module.css";
+import protectedRoute from "./HOC/protectedRoute";
 
 const Index = () => {
 	const dispatch = useDispatch();
@@ -41,4 +42,4 @@ const Index = () => {
 	);
 };
 
-export default Index;
+export default protectedRoute(Index);

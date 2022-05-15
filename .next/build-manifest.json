@@ -24,10 +24,10 @@
       "static/chunks/webpack.js",
       "static/chunks/pages/_error.js"
     ],
-    "/bids/completed": [
+    "/merchant/login": [
       "static/chunks/main.js",
       "static/chunks/webpack.js",
-      "static/chunks/pages/bids/completed.js"
+      "static/chunks/pages/merchant/login.js"
     ],
     "/products": [
       "static/chunks/main.js",

@@ -8,17 +8,17 @@ export const actionTypes = {
     CHECK_AUTHORIZATION: 'CHECK_AUTHORIZATION',
 };
 
-export function login(loginCred) {
-    return { type: actionTypes.LOGIN_REQUEST, loginCred};
+export function login(payload) {
+    return { type: actionTypes.LOGIN_REQUEST, payload};
 }
 
 export function loginSuccess(isLogin) {
-    
+    console.log(isLogin)
     return { type: actionTypes.LOGIN_SUCCESS, isLogin };
 }
 
-export function register(registerCred) {
-    return { type: actionTypes.REGISTER_REQUEST, registerCred};
+export function register(payload) {
+    return { type: actionTypes.REGISTER_REQUEST, payload};
 }
 
 export function registerSuccess(isRegistered) {
