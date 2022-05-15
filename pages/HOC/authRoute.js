@@ -16,6 +16,7 @@ function authRoute(WrappedComponent) {
 			return <WrappedComponent {...props} />;
 		} else {
 			router.back();
+			return null
 		}
 	};
 }

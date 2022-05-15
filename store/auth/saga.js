@@ -102,7 +102,7 @@ function* registerSaga({payload}) {
 			modalRegistrationSuccess("success");
 	setTimeout(()=>{
 		payload.router.push('/')
-	},2000)
+	},500)
 		}
 	} catch (err) {
 		console.log(err);
